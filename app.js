@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const compression = require('compression')
 
-const HandleError = require('./error/handleError')
+const HandleError = require('./error/handleError.js')
 const GlobalErrorHandler = require('./error/errorController')
 
 const exampleRouter = require('./routes/exampleRoutes')
