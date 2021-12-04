@@ -9,10 +9,6 @@ const sendErrorDev = (err, req, res) => {
       stack: err.stack
     })
   }
-  return res.status(err.statusCode).render('error', {
-    title: 'Something went wrong!',
-    msg: err.message
-  })
 }
 
 const sendErrorProd = (err, req, res) => {
@@ -29,10 +25,6 @@ const sendErrorProd = (err, req, res) => {
       message: 'Something went wrong!'
     })
   }
-  return res.status(err.statusCode).render('error', {
-    title: 'Something went wrong!',
-    msg: 'Please try again later'
-  })
 }
 
 module.exports = (err, req, res, next) => {

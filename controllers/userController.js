@@ -9,6 +9,8 @@ exports.signup = HandleAsync(async (req, res, next) => {
     email: req.body.email
   })
 
+  req.user = user
+
   createSignToken(user, 201, req, res)
 })
 
@@ -22,6 +24,8 @@ exports.login = HandleAsync(async (req, res, next) => {
 
   // 2) Check if the user exists && password is correct
   const user = await User.findOne({ email })
+
+  req.user = user
 
   if (!user) {
     return next(new HandleError('Incorrect email or password', 401))

@@ -59,7 +59,7 @@ app.use((req, res, next) => {
 const init = (req, res) => res.send('I am on')
 
 //-- Route Handlerr
-app.use('/', init)
+app.get('/', init)
 app.use('/api/v1/example', exampleRouter)
 app.use('/api/v1/users', userRouter)
 
