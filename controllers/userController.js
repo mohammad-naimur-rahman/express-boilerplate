@@ -25,7 +25,7 @@ yarn add crypto-js
 In the frontend->
 const CryptoJS = require("crypto-js"); // yes, you have to use this require system in the frontend.
 
-while sending POST request from the frontend->
+while sending POST request from the frontend (after completing firebase login, signup or logout)->
 const sign_secret = CryptoJS.AES.encrypt(JSON.stringify(<user_email>), <process.env.SIGN_SECRET_KEY>).toString();
 This sign_secret will be sent in the header.
 
