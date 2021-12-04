@@ -15,8 +15,6 @@ exports.createSignToken = (user, statusCode, req, res) => {
     secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
   })
 
-  req.user.password = undefined
-
   res.status(statusCode).json({
     status: 'success',
     data: {
