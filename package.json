@@ -1,0 +1,14 @@
+{
+  "name": "express-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "debug": "ndb server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
