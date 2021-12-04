@@ -13,6 +13,7 @@ const HandleError = require('./error/handleError.js')
 const GlobalErrorHandler = require('./error/errorController')
 
 const exampleRouter = require('./routes/exampleRoutes')
+const userRouter = require('./routes/userRoutes')
 // ^^ END OF IMPORTS ^^ //
 
 const app = express()
@@ -60,6 +61,7 @@ const init = (res, res) => res.send('I am on')
 //-- Route Handlerr
 app.use('/', init)
 app.use('/api/v1/example', exampleRouter)
+app.use('/api/v1/users', userRouter)
 
 //-- For Undeclared Routes
 app.all('*', (req, res, next) => {

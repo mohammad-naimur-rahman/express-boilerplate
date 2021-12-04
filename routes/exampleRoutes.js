@@ -11,3 +11,5 @@ router
   .use('/example')
   .get(getAllExample)
   .post(auth, restrictedTo('admin'), createExample)
+
+module.exports = router
