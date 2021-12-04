@@ -80,7 +80,7 @@ exports.login = HandleAsync(async (req, res, next) => {
   createSignToken(user, 200, req, res)
 })
 
-exports.logout = catchAsync(async (req, res, next) => {
+exports.logout = HandleAsync(async (req, res, next) => {
   const { email } = req.body
   const bytes = CryptoJS.AES.decrypt(
     req.headers.sign_secret,
