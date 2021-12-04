@@ -80,6 +80,8 @@ web_modules/
 .next
 out
 
+/.vscode
+
 # Serverless directories
 .serverless/
 

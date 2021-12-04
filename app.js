@@ -56,7 +56,7 @@ app.use((req, res, next) => {
   next()
 })
 
-const init = (res, res) => res.send('I am on')
+const init = (req, res) => res.send('I am on')
 
 //-- Route Handlerr
 app.use('/', init)
