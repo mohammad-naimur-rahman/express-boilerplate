@@ -5,16 +5,7 @@ const HandleAsync = require('./../utils/handleAsync')
 const HandleError = require('./../error/handleError')
 
 exports.auth = HandleAsync(async (req, res, next) => {
-  // 1) Getting token and check if it's there
-  let token
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    token = req.headers.authorization.split(' ')[1]
-  } else if (req.cookies.jwt) {
-    token = req.cookies.jwt
-  }
+  const token = req.cookies.jwt
 
   if (!token) {
     return next(
@@ -22,10 +13,8 @@ exports.auth = HandleAsync(async (req, res, next) => {
     )
   }
 
-  // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET_KEY)
 
-  // 3) Check if user still exists
   const currentUser = await User.findById(decoded.id)
   if (!currentUser) {
     return next(
@@ -36,7 +25,6 @@ exports.auth = HandleAsync(async (req, res, next) => {
     )
   }
 
-  // GRANT ACCESS TO PROTECTED ROUTE
   req.user = currentUser
   next()
 })
