@@ -2,13 +2,20 @@
 
 ##### Its an Express MongoDB boilerplate that will give you production level backend application readymade starter pack! 🤩
 
+In this boilerplate, for user authentication, firebase will be used and for jwt, it will be handled by this app manually
+
 ### Features:
 
 - Mongoose support for complex Schema types
 - Ready to build enterprise backend application
+- Included auth middlewares and JWT handlers
+- Used http only Cookie JWT authentication for tight security
 - Added securities and protection from attackers
+- Added essential utilities
+- Easy error handling included
 - Scalable architecture support
 - Limited cross origin support
+- Custom rate limiting support
 - Cleaner and regulated code rules with prettier syntax
 - Added uncaughtException, unhandledRejection and SIGTERM for avoiding unexpected behavior
 
