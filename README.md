@@ -19,7 +19,19 @@ In this boilerplate, for user authentication, firebase will be used and for jwt,
 - Cleaner and regulated code rules with prettier syntax
 - Added uncaughtException, unhandledRejection and SIGTERM for avoiding unexpected behavior
 
-First install dependencies
+Clone repository
+
+```
+git clone https://github.com/mohammad-naimur-rahman/express-boilerplate.git
+```
+
+Go to `express-boilderplate` folder
+
+```
+cd express-boilerplate
+```
+
+Install dependencies
 
 ```
 yarn
