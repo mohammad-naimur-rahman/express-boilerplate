@@ -8,7 +8,7 @@ const { auth, restrictedTo } = require('../middlewares/authMiddlewares')
 const router = express.Router()
 
 router
-  .route('/example')
+  .route('/')
   .get(getAllExample)
   .post(auth, restrictedTo('admin'), createExample)
 
