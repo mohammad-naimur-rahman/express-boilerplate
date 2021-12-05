@@ -2,7 +2,6 @@ const HandleError = require('../error/handleError')
 const { createSignToken } = require('../utils/authHandler')
 const HandleAsync = require('../utils/handleAsync')
 const User = require('./../models/userModel')
-const CryptoJS = require('crypto-js')
 
 /*
 In this express app, authentication will be handled by firebase and JWT will be handled by this app.
@@ -36,15 +35,6 @@ and verifying the user.
 
 exports.signup = HandleAsync(async (req, res, next) => {
   const { name, email } = req.body
-  const bytes = CryptoJS.AES.decrypt(
-    req.headers.sign_secret,
-    process.env.SIGN_SECRET_KEY
-  )
-  const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
-
-  if (decryptedData !== email) {
-    return next(new HandleError('Please signup with firebase first', 400))
-  }
 
   const user = await User.create({
     name,
@@ -57,20 +47,6 @@ exports.signup = HandleAsync(async (req, res, next) => {
 exports.login = HandleAsync(async (req, res, next) => {
   const { email } = req.body
 
-  const bytes = CryptoJS.AES.decrypt(
-    req.headers.sign_secret,
-    process.env.SIGN_SECRET_KEY
-  )
-  const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
-
-  if (!email) {
-    return next(new HandleError('Please provide email and password', 400))
-  }
-
-  if (decryptedData !== email) {
-    return next(new HandleError('Please login with firebase first', 400))
-  }
-
   const user = await User.findOne({ email })
 
   if (!user) {
@@ -81,17 +57,6 @@ exports.login = HandleAsync(async (req, res, next) => {
 })
 
 exports.logout = HandleAsync(async (req, res, next) => {
-  const { email } = req.body
-  const bytes = CryptoJS.AES.decrypt(
-    req.headers.sign_secret,
-    process.env.SIGN_SECRET_KEY
-  )
-  const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
-
-  if (decryptedData !== email) {
-    return next(new HandleError('Please logout with firebase first', 400))
-  }
-
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true

@@ -1,5 +1,6 @@
 const { promisify } = require('util')
 const jwt = require('jsonwebtoken')
+const CryptoJS = require('crypto-js')
 const User = require('./../models/userModel')
 const HandleAsync = require('./../utils/handleAsync')
 const HandleError = require('./../error/handleError')
@@ -41,4 +42,19 @@ exports.restrictedTo = (...roles) => {
     }
     next()
   }
+}
+
+exports.checkFirebaseAuth = (req, res, next) => {
+  const { email } = req.body
+  const bytes = CryptoJS.AES.decrypt(
+    req.headers.sign_secret,
+    process.env.SIGN_SECRET_KEY
+  )
+  const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
+
+  if (!email || decryptedData !== email) {
+    return next(new HandleError('Please signup with firebase first', 400))
+  }
+
+  next()
 }
